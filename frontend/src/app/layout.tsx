@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ChakraProvider theme={theme}>
+        <ChakraProvider value={theme}>
           {children}
         </ChakraProvider>
       </body>
