@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "@/theme";
 import { Layout } from "@/components/Layout";
 import "./globals.css";
 
@@ -25,11 +23,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
-        <ChakraProvider value={theme}>
-          <Layout>
-            {children}
-          </Layout>
-        </ChakraProvider>
+        <Layout>
+          {children}
+        </Layout>
       </body>
     </html>
   );

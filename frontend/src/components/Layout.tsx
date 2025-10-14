@@ -1,4 +1,3 @@
-import { Box, Container, Heading, Text } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
 interface LayoutProps {
@@ -7,46 +6,47 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
     return (
-        <Box minH="100vh" display="flex" flexDirection="column">
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             {/* Header fixo no topo */}
-            <Box
-                as="header"
-                bg="blue.500"
-                color="white"
-                py={4}
-                position="sticky"
-                top={0}
-                zIndex={10}
-                boxShadow="md"
+            <header
+                style={{
+                    backgroundColor: '#2F80ED',
+                    color: 'white',
+                    padding: '1rem 0',
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 10,
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                }}
             >
-                <Container maxW="container.xl">
-                    <Heading as="h1" size="lg" textAlign="center">
+                <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+                    <h1 style={{ fontSize: '1.5rem', textAlign: 'center', margin: 0 }}>
                         Programas de Formação
-                    </Heading>
-                </Container>
-            </Box>
+                    </h1>
+                </div>
+            </header>
 
             {/* Conteúdo principal */}
-            <Box as="main" flex={1} py={8}>
-                <Container maxW="container.xl" px={4}>
+            <main style={{ flex: 1, padding: '2rem 0' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
                     {children}
-                </Container>
-            </Box>
+                </div>
+            </main>
 
             {/* Footer */}
-            <Box
-                as="footer"
-                bg="gray.100"
-                py={4}
-                borderTop="1px"
-                borderColor="gray.200"
+            <footer
+                style={{
+                    backgroundColor: '#f7fafc',
+                    padding: '1rem 0',
+                    borderTop: '1px solid #e2e8f0',
+                }}
             >
-                <Container maxW="container.xl">
-                    <Text textAlign="center" color="gray.600">
+                <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+                    <p style={{ textAlign: 'center', color: '#4a5568', margin: 0 }}>
                         © 2025 - Plataforma de Programas de Formação
-                    </Text>
-                </Container>
-            </Box>
-        </Box>
+                    </p>
+                </div>
+            </footer>
+        </div>
     );
 }
