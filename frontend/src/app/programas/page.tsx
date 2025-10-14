@@ -5,10 +5,8 @@ import { useEffect, useState } from 'react';
 import {
     Box,
     Button,
-    Card,
     CardBody,
     CardFooter,
-    Flex,
     Heading,
     Input,
     Select,
@@ -74,7 +72,7 @@ export default function ProgramasPage() {
 
     return (
         <Container maxW="container.xl">
-            <VStack spacing={8} align="stretch">
+            <VStack gap={8} align="stretch">
                 {/* Título da página */}
                 <Box>
                     <Heading as="h1" size="xl" mb={2}>
@@ -86,9 +84,9 @@ export default function ProgramasPage() {
                 </Box>
 
                 {/* Seção de Filtros */}
-                <Card>
+                <Box borderWidth="1px" borderRadius="lg" p={4}>
                     <CardBody>
-                        <VStack spacing={4} align="stretch">
+                        <VStack gap={4} align="stretch">
                             <Heading as="h2" size="md">
                                 Filtros
                             </Heading>
@@ -117,20 +115,25 @@ export default function ProgramasPage() {
                                     <Text fontSize="sm" fontWeight="medium" mb={2}>
                                         Área
                                     </Text>
-                                    <Select
-                                        placeholder="Todas as áreas"
+                                    <Select.Root
+                                        collection={['frontend', 'backend', 'dados', 'cloud', 'ux', 'mobile', 'seguranca'].map(item => ({ label: item.charAt(0).toUpperCase() + item.slice(1), value: item }))}
+                                        value={filtros.area ? [filtros.area] : []}
+                                        onValueChange={(details) => setFiltro('area', details.value[0] || '')}
                                         size="md"
-                                        value={filtros.area}
-                                        onChange={(e) => setFiltro('area', e.target.value)}
                                     >
-                                        <option value="frontend">Frontend</option>
-                                        <option value="backend">Backend</option>
-                                        <option value="dados">Dados</option>
-                                        <option value="cloud">Cloud</option>
-                                        <option value="ux">UX</option>
-                                        <option value="mobile">Mobile</option>
-                                        <option value="seguranca">Segurança</option>
-                                    </Select>
+                                        <Select.Trigger>
+                                            <Select.Value placeholder="Todas as áreas" />
+                                        </Select.Trigger>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {['frontend', 'backend', 'dados', 'cloud', 'ux', 'mobile', 'seguranca'].map(item => (
+                                                    <Select.Item key={item} value={item}>
+                                                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Select.Root>
                                 </Box>
 
                                 {/* Select Modalidade */}
@@ -138,16 +141,25 @@ export default function ProgramasPage() {
                                     <Text fontSize="sm" fontWeight="medium" mb={2}>
                                         Modalidade
                                     </Text>
-                                    <Select
-                                        placeholder="Todas as modalidades"
+                                    <Select.Root
+                                        collection={['presencial', 'online', 'hibrido'].map(item => ({ label: item.charAt(0).toUpperCase() + item.slice(1), value: item }))}
+                                        value={filtros.modalidade ? [filtros.modalidade] : []}
+                                        onValueChange={(details) => setFiltro('modalidade', details.value[0] || '')}
                                         size="md"
-                                        value={filtros.modalidade}
-                                        onChange={(e) => setFiltro('modalidade', e.target.value)}
                                     >
-                                        <option value="presencial">Presencial</option>
-                                        <option value="online">Online</option>
-                                        <option value="hibrido">Híbrido</option>
-                                    </Select>
+                                        <Select.Trigger>
+                                            <Select.Value placeholder="Todas as modalidades" />
+                                        </Select.Trigger>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {['presencial', 'online', 'hibrido'].map(item => (
+                                                    <Select.Item key={item} value={item}>
+                                                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Select.Root>
                                 </Box>
 
                                 {/* Select Nível */}
@@ -155,16 +167,25 @@ export default function ProgramasPage() {
                                     <Text fontSize="sm" fontWeight="medium" mb={2}>
                                         Nível
                                     </Text>
-                                    <Select
-                                        placeholder="Todos os níveis"
+                                    <Select.Root
+                                        collection={['iniciante', 'intermediario', 'avancado'].map(item => ({ label: item.charAt(0).toUpperCase() + item.slice(1), value: item }))}
+                                        value={filtros.nivel ? [filtros.nivel] : []}
+                                        onValueChange={(details) => setFiltro('nivel', details.value[0] || '')}
                                         size="md"
-                                        value={filtros.nivel}
-                                        onChange={(e) => setFiltro('nivel', e.target.value)}
                                     >
-                                        <option value="iniciante">Iniciante</option>
-                                        <option value="intermediario">Intermediário</option>
-                                        <option value="avancado">Avançado</option>
-                                    </Select>
+                                        <Select.Trigger>
+                                            <Select.Value placeholder="Todos os níveis" />
+                                        </Select.Trigger>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {['iniciante', 'intermediario', 'avancado'].map(item => (
+                                                    <Select.Item key={item} value={item}>
+                                                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Select.Root>
                                 </Box>
 
                                 {/* Botão Limpar Filtros */}
@@ -182,7 +203,7 @@ export default function ProgramasPage() {
                             </Box>
                         </VStack>
                     </CardBody>
-                </Card>
+                </Box>
 
                 {/* Grid de Cards */}
                 <Box>
@@ -196,9 +217,9 @@ export default function ProgramasPage() {
                     </HStack>
 
                     {programasFiltrados.length === 0 ? (
-                        <Card>
+                        <Box borderWidth="1px" borderRadius="lg" p={4}>
                             <CardBody>
-                                <VStack spacing={4} py={8}>
+                                <VStack gap={4} py={8}>
                                     <Text fontSize="lg" color="gray.500" textAlign="center">
                                         Nenhum programa encontrado. Tente outros filtros.
                                     </Text>
@@ -211,7 +232,7 @@ export default function ProgramasPage() {
                                     </Button>
                                 </VStack>
                             </CardBody>
-                        </Card>
+                        </Box>
                     ) : (
                         <Box
                             display="grid"
@@ -223,9 +244,9 @@ export default function ProgramasPage() {
                             gap={6}
                         >
                             {programasFiltrados.map((programa) => (
-                                <Card key={programa.id} variant="outline" _hover={{ shadow: "md" }}>
+                                <Box key={programa.id} borderWidth="1px" borderRadius="lg" overflow="hidden" _hover={{ shadow: "md" }}>
                                     <CardBody>
-                                        <VStack align="stretch" spacing={3}>
+                                        <VStack align="stretch" gap={3}>
                                             <Heading as="h3" size="md" color="blue.500">
                                                 {programa.titulo}
                                             </Heading>
@@ -234,7 +255,7 @@ export default function ProgramasPage() {
                                                 {programa.resumo}
                                             </Text>
 
-                                            <HStack spacing={2} flexWrap="wrap">
+                                            <HStack gap={2} flexWrap="wrap">
                                                 <Badge colorScheme="blue" variant="subtle">
                                                     {programa.area}
                                                 </Badge>
@@ -258,7 +279,7 @@ export default function ProgramasPage() {
                                             Ver detalhes
                                         </Button>
                                     </CardFooter>
-                                </Card>
+                                </Box>
                             ))}
                         </Box>
                     )}
