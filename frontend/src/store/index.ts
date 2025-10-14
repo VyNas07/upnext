@@ -1,9 +1,17 @@
 import { create } from 'zustand';
 
-interface AppState {
-    // Estado inicial vazio conforme solicitado
+interface User {
+    id: string;
+    name: string;
+    email: string;
 }
 
-export const useAppStore = create<AppState>((set) => ({
-    // Store inicial vazia
+interface UserState {
+    user: User | null;
+    setUser: (user: User | null) => void;
+}
+
+export const useUserStore = create<UserState>((set) => ({
+    user: null,
+    setUser: (user) => set({ user }),
 }));
