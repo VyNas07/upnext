@@ -1,9 +1,21 @@
-import { listProgramas } from "@/lib/programas.service";
-import ProgramList from "@/features/programas/ProgramList";
+
+import { listProgramas } from '@/lib/programas.service';
+import { Container, Heading, VStack } from '@chakra-ui/react';
+import { ProgramList } from '@/app/programas/ProgramList'; 
 
 export default async function ProgramasPage() {
-    // Buscar dados no servidor - a filtragem é client-side e será trocada por API query params quando houver backend
-    const programas = await listProgramas();
+ 
+  const programas = await listProgramas();
 
-    return <ProgramList serverProgramas={programas} />;
+  return (
+    <Container maxW="container.xl" py={8}>
+      <VStack spacing={8} align="stretch">
+        <Heading as="h1" size="xl">
+          Programas Disponíveis
+        </Heading>
+
+        <ProgramList serverProgramas={programas} />
+      </VStack>
+    </Container>
+  );
 }
