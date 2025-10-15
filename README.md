@@ -1,75 +1,66 @@
-# Plataforma de Programas de Formação
+# 🌐 UpNext
 
-Repositório monolítico que contém a aplicação front-end (Next.js) e, futuramente, o back-end (API).  
-Este repositório tem foco inicial no **front-end**; o backend será adicionado após a entrega do MVP do front.
-
----
-
-## Estrutura do repositório
-
-/
-├─ frontend/ # Aplicação Next.js (App Router, Chakra, Zustand)
-│ ├─ src/
-│ │ ├─ app/
-│ │ ├─ components/
-│ │ ├─ features/
-│ │ ├─ lib/
-│ │ ├─ mocks/
-│ │ ├─ store/
-│ │ └─ types/
-│ ├─ package.json
-│ └─ ...
-├─ backend/ # Backend (vazio/placeholder por enquanto)
-│ └─ README.md
-├─ .gitignore
-└─ README.md # Este arquivo
+> *Conectando quem forma com quem quer se formar.*
 
 ---
 
-## Tecnologias (front)
-
-- Next.js (App Router) + TypeScript  
-- Chakra UI (design system)  
-- Zustand (estado global, persistência local)  
-- ESLint + Prettier (padronização)  
+### Sobre
+**UpNext** é uma plataforma que centraliza **programas de formação em tecnologia**, conectando **instituições** que promovem capacitação a **novos talentos** em busca de oportunidades.
 
 ---
 
-## Checklist mínimo para entrega (MVP - Front)
+### Propósito
+Facilitar o acesso a **editais e inscrições abertas** em tecnologia, permitindo que:
 
-- Next.js (App Router) configurado
-- Chakra UI integrado com tema
-- Zustand configurado (filtros, favoritos persistência)
-- /programas — listagem com filtros e cards
-- /programas/[id] — página de detalhe (mock)
-- /instituicoes — listagem básica
-- /favoritos — exibe programas favoritados (persistente)
-- /perfil — interesses simulados
-- Loading / Empty / Error states tratados (skeletons/mensagens)
-- Deploy público (Vercel) e link no README
-- README com instruções e checklist
+- **Usuários** encontrem programas alinhados às suas áreas de interesse.  
+- **Empresas e instituições** divulguem iniciativas com informações completas — regras, público-alvo, prazos e documentos.
 
-## Como rodar (apenas front por enquanto)
+---
 
-> Execute os comandos a partir da raiz do repositório.
+### Estrutura
+O projeto segue um modelo **monolítico**, dividido em duas partes principais:
+
+```
+├── client/   → Frontend da aplicação (interface do usuário)
+└── server/   → Backend (API e regras de negócio)
+```
+
+---
+
+
+## Como usar
+
+**1. Clone o repositório**
 
 ```bash
-# Entrar na pasta do frontend
-cd frontend
-
-# Instalar dependências
-yarn install   # ou npm install
-
-# Rodar em ambiente de desenvolvimento
-yarn dev       # abre em http://localhost:3000
-
-# Build de produção
-yarn build
-yarn start     # se necessário
+git clone https://github.com/VyNas07/upnext.git
+cd upnext
 ```
-## Equipe:
 
-Vyktor Nascimento
-Luan Martins
-Mariana Ferreira
-João Lira
+**2. Instale as dependências**
+
+```bash
+cd client && npm install
+```
+
+**3. Rode o frontend**
+
+```bash
+cd client
+npm run dev
+```
+
+**4. Acesse a aplicação**
+
+```
+http://localhost:3000
+```
+
+---
+
+## Autores
+
+-  Mariana Ferreira | [@mwndrly](https://github.com/mwndrly) |
+-  Vyktor Nascimento | [@VyNas07](https://github.com/VyNas07) |
+-  Luan Martins | [@LaomWill](https://github.com/LaomWill) |
+-  João Lira | [@joaosanli](https://github.com/joaosanli) |
