@@ -181,9 +181,6 @@ O projeto inclui dados simulados em `src/data/mockData.ts`:
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
-## 👥 Equipe
-
-Desenvolvido como parte do projeto UpNext para conectar talentos com oportunidades de formação em tecnologia.
 
 ---
 
