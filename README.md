@@ -2,6 +2,7 @@
 
 Uma plataforma moderna e intuitiva para conectar talentos com oportunidades de formação em tecnologia. Desenvolvida com Next.js, Chakra UI e Zustand.
 
+Link do deploy: https://upnext-seven.vercel.app/
 ## 🚀 Funcionalidades
 
 ### ✅ Implementadas
