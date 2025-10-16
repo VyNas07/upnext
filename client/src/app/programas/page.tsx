@@ -1,7 +1,7 @@
 
 import { listProgramas } from '@/lib/programas.service';
 import { Container, Heading, VStack } from '@chakra-ui/react';
-import { ProgramList } from '@/app/programas/ProgramList'; 
+import ProgramList from '@/features/programas/ProgramList'; 
 
 export default async function ProgramasPage() {
  

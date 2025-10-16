@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Layout } from "@/components/Layout";
+import { Providers } from "./providers";
+import { Header } from "@/components/Header";
+import { Box } from "@chakra-ui/react";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Plataforma de Programas de Formação",
-  description: "Plataforma para gerenciamento de programas de formação",
+  title: "UpNext - Programas de Formação",
+  description: "Plataforma para centralizar e divulgar programas de formação em tecnologia.",
 };
 
 export default function RootLayout({
@@ -20,12 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${inter.variable} antialiased`}
-      >
-        <Layout>
-          {children}
-        </Layout>
+      <body className={inter.variable}>
+        <Providers>
+          <Header />
+          <Box as="main">
+            {children}
+          </Box>
+        </Providers>
       </body>
     </html>
   );

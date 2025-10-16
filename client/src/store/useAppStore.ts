@@ -1,49 +1,39 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type { Programa } from "@/types/domain";
 
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-
-type FiltrosState = {
+type Filtros = {
   busca: string;
-  area?: string;
-  modalidade?: string;
-  nivel?: string;
+  area?: Programa["area"];
+  modalidade?: Programa["modalidade"];
+  nivel?: Programa["nivel"];
+  periodo?: { inicio?: string; fim?: string }; // ISO
 };
 
-interface AppState {
-  filtros: FiltrosState;
-  favoritos: string[];
-
-  setFiltros: (novosFiltros: Partial<FiltrosState>) => void;
-  toggleFavorito: (programaId: string) => void;
-}
+type AppState = {
+  filtros: Filtros;
+  favoritos: string[]; // ids de Programa
+  setBusca: (v: string) => void;
+  setFiltro: <K extends keyof Filtros>(k: K, v: Filtros[K]) => void;
+  toggleFavorito: (id: string) => void;
+  resetFiltros: () => void;
+};
 
 export const useAppStore = create<AppState>()(
   persist(
-    (set) => ({
-
-      filtros: {
-        busca: '',
-      },
+    (set, get) => ({
+      filtros: { busca: "" },
       favoritos: [],
-
-
-      setFiltros: (novosFiltros) =>
-        set((state) => ({
-          filtros: { ...state.filtros, ...novosFiltros },
+      setBusca: (v) => set((s) => ({ filtros: { ...s.filtros, busca: v } })),
+      setFiltro: (k, v) => set((s) => ({ filtros: { ...s.filtros, [k]: v } })),
+      toggleFavorito: (id) =>
+        set((s) => ({
+          favoritos: s.favoritos.includes(id)
+            ? s.favoritos.filter((x) => x !== id)
+            : [...s.favoritos, id],
         })),
-
-      toggleFavorito: (programaId) =>
-        set((state) => {
-          const isFavorito = state.favoritos.includes(programaId);
-          return {
-            favoritos: isFavorito
-              ? state.favoritos.filter((id) => id !== programaId)
-              : [...state.favoritos, programaId],
-          };
-        }),
+      resetFiltros: () => set({ filtros: { busca: "" } }),
     }),
-    {
-      name: 'app-storage',
-    }
+    { name: "app-store" } // salva em localStorage
   )
 );
